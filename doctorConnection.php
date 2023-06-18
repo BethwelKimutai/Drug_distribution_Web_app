@@ -1,5 +1,5 @@
 <?php
-// Database connection settings
+// Database connection 
 $host = 'localhost';
 $username = 'root'; 
 $password = ''; 
@@ -17,15 +17,15 @@ if (!$connection) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ssn = $_POST['ssn'];
     $name = $_POST['name'];
-    $address = $_POST['address'];
-    $age = $_POST['age'];
+    $specialty = $_POST['specialty'];
+    $experience = $_POST['experience'];
     $password = $_POST['password'];
 
-    // Insert data into the patients table
-    $query = "INSERT INTO patients (ssn, name, address, age, password) VALUES ('$ssn', '$name', '$address', $age, '$password')";
+    // Insert data into the doctors table
+    $query = "INSERT INTO doctors (ssn, name, specialty, experience, password) VALUES ('$ssn', '$name', '$specialty', $experience, '$password')";
 
     if (mysqli_query($connection, $query)) {
-        echo "Data inserted successfully!";
+        echo "Signin successful! Data inserted into the doctors table.";
     } else {
         echo "Error inserting data: " . mysqli_error($connection);
     }
@@ -34,4 +34,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Close the database connection
 mysqli_close($connection);
 ?>
-

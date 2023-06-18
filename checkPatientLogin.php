@@ -1,7 +1,10 @@
 <?php
+// Start the session
+session_start();
+
 // Database connection settings
 $host = 'localhost';
-$username = 'root'; 
+$username = 'root';
 $password = ''; 
 $database = 'DrugDistributionDb';
 
@@ -13,25 +16,25 @@ if (!$connection) {
     die('Database connection failed: ' . mysqli_connect_error());
 }
 
-// Process form submission
+// Process login form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ssn = $_POST['ssn'];
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $age = $_POST['age'];
     $password = $_POST['password'];
 
-    // Insert data into the patients table
-    $query = "INSERT INTO patients (ssn, name, address, age, password) VALUES ('$ssn', '$name', '$address', $age, '$password')";
+    // Check if user exists in the patients table
+    $query = "SELECT * FROM patients WHERE ssn='$ssn' AND password='$password'";
+    $result = mysqli_query($connection, $query);
 
-    if (mysqli_query($connection, $query)) {
-        echo "Data inserted successfully!";
+    if (mysqli_num_rows($result) === 1) {
+        $_SESSION['username'] = $ssn;
+        // User exists, redirect to main page
+        header('Location: patientMainPage.php');
+        exit();
     } else {
-        echo "Error inserting data: " . mysqli_error($connection);
+        echo "Invalid credentials. Please try again.";
     }
 }
 
 // Close the database connection
 mysqli_close($connection);
 ?>
-

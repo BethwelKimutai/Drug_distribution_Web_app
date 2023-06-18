@@ -28,8 +28,8 @@
         <h1>Welcome to the drug distribution website.</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At aperiam enim atque incidunt quam commodi quidem mollitia eos, iure alias voluptatum molestiae, est suscipit cumque recusandae hic adipisci amet dolorem.</p>
         <div class = "btn-box">
-            <a href = "index.php">Sign in</a>
-            <a href = "#">Login</a>
+            <a href = "options.php">Sign in</a>
+            <a href = "options1.php">Login</a>
         </div>
         <div class= "home-sci">
             <a href ="#"><i class='bx bx-phone' ></i></a>
